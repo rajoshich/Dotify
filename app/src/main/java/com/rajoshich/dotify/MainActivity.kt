@@ -19,34 +19,38 @@ class MainActivity : AppCompatActivity() {
 
         playnumber.text = (randomNumber.toString() + " plays")
 
-        play.setOnClickListener { play: View ->
+        play.setOnClickListener {
             randomNumber++
             playnumber.text = (randomNumber.toString() + " plays")
         }
 
-        next.setOnClickListener{ next: View ->
+        next.setOnClickListener{
             Toast.makeText(this, "Skipping to next track", Toast.LENGTH_SHORT).show()
         }
 
-        prev.setOnClickListener { prev: View ->
+        prev.setOnClickListener {
             Toast.makeText(this, "Skipping to previous track", Toast.LENGTH_SHORT).show()
         }
 
         changeuser.setOnClickListener {
             if (changeuser.text == "Apply") {
                 inputuser.visibility = View.GONE
-                username.text = inputuser.text
-                changeuser.text = "Change user"
-                username.visibility = View.VISIBLE
-            } else {
+                if (inputuser.text.toString().trim().isEmpty()) {
+                    Toast.makeText(this, "Username can't be null.", Toast.LENGTH_SHORT).show()
+                    username.visibility = View.GONE
+                    inputuser.visibility = View.VISIBLE
+                    changeuser.text = "Apply"
+                } else {
+                    username.text = inputuser.text
+                    changeuser.text = "Change user"
+                    username.visibility = View.VISIBLE
+                }
+            }else {
                 username.visibility = View.GONE
                 inputuser.visibility = View.VISIBLE
                 changeuser.text = "Apply"
-
             }
         }
-
-
 
     }
 
