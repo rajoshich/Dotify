@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
-    private var randomNumber = Random.nextInt(300, 5000)
+    private var randomNumber = Random.nextInt(200, 100000)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
