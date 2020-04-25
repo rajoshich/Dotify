@@ -23,7 +23,7 @@
         android:background="@color/colorAccent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Song Title"
+        android:text="@string/playerMessage"
         android:textSize="20sp"
         android:padding="16dp"
         app:layout_constraintBottom_toBottomOf="parent"

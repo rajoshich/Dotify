@@ -14,8 +14,13 @@ class SongListActivity : AppCompatActivity() {
         title = "All Songs"
         val allSongs: List<Song> = SongDataProvider.getAllSongs();
 
-        val songAdapter = SongListAdapter(allSongs)
+        val songAdapter = SongListAdapter(allSongs, this)
         rvSongs.adapter = songAdapter
+
+        songAdapter.onSongClickListener = {song ->
+            songDisplay.text = getString(R.string.playerMessage).format(song.title, song.artist)
+        }
+
 
     }
 }
