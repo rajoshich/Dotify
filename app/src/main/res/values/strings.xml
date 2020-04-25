@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">Dotify</string>
-    <string name="playerMessage">%s - %s</string>
+    <string name="playerMessage">%1$s - %2$s</string>
 </resources>

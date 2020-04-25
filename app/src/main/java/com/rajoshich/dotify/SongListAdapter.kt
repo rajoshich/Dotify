@@ -12,7 +12,7 @@ import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.ericchee.songdataprovider.Song
 
-class SongListAdapter(private val listOfSongs: List<Song>, val context: Context): RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
+class SongListAdapter(private var listOfSongs: List<Song>, val context: Context): RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
 
     var onSongClickListener: ((song: Song) -> Unit)? = null
 
@@ -30,6 +30,11 @@ class SongListAdapter(private val listOfSongs: List<Song>, val context: Context)
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
         val song = listOfSongs[position]
         holder.bind(song)
+    }
+
+    fun change(newSongs: List<Song>) {
+        listOfSongs = newSongs
+        notifyDataSetChanged()
     }
 
      inner class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
