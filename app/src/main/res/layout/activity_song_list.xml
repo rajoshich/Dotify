@@ -17,7 +17,27 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:listitem="@layout/item_song"
         />
+    
+    <TextView
+        android:id="@+id/songDisplay"
+        android:background="@color/colorAccent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Song Title"
+        android:textSize="20sp"
+        android:padding="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
 
+    <ImageView
+        android:id="@+id/shuffle"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/shuffle"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="@id/songDisplay"
+        android:layout_marginRight="16dp"
+        />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

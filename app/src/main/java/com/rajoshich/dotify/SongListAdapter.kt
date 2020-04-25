@@ -38,11 +38,21 @@ class SongListAdapter(private val listOfSongs: List<Song>): RecyclerView.Adapter
         private val songArtist by lazy {
             itemView.findViewById<TextView>(R.id.songArtist)
         }
+        private val songDisplay by lazy {
+            itemView.findViewById<TextView>(R.id.songDisplay)
+        }
+
 
         fun bind(song: Song) {
             songName.text = song.title
             songArtist.text = song.artist
             songImg.setImageResource(song.smallImageID)
+
+            itemView.setOnClickListener{
+                songDisplay.text = "$songName- $songArtist"
+            }
+
+
         }
     }
 
