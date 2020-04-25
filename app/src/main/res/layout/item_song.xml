@@ -2,7 +2,8 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
 
     <ImageView
@@ -18,7 +19,7 @@
         android:id="@+id/songName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="title"
+        tools:text = "Name"
         app:layout_constraintLeft_toRightOf="@id/songImage"
         app:layout_constraintTop_toTopOf="@id/songImage"
         app:layout_constraintBottom_toBottomOf="@id/songImage"
@@ -30,7 +31,7 @@
         android:id="@+id/songArtist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/app_name"
+        tools:text="Artist"
         app:layout_constraintLeft_toRightOf="@id/songImage"
         app:layout_constraintTop_toBottomOf="@id/songName"
         app:layout_constraintBottom_toBottomOf="@id/songImage"
