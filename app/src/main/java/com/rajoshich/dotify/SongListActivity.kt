@@ -1,5 +1,6 @@
 package com.rajoshich.dotify
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.ericchee.songdataprovider.Song
@@ -22,9 +23,17 @@ class SongListActivity : AppCompatActivity() {
             songDisplay.text = getString(R.string.playerMessage).format(song.title, song.artist)
         }
 
+        songDisplay.setOnClickListener {
+           val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
+
         shuffle.setOnClickListener {
             val newSongs = allSongs.shuffled()
             songAdapter.change(newSongs)
         }
+
+
     }
 }
