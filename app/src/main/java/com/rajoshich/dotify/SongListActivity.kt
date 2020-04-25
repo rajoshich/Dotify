@@ -13,8 +13,9 @@ class SongListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_song_list)
 
         val allSongs: List<Song> = SongDataProvider.getAllSongs();
-        val firstSong: Song = allSongs[1]
-        songName.text = firstSong.title
+
+        val songAdapter = SongListAdapter(allSongs)
+        rvSongs.adapter = songAdapter
 
     }
 }

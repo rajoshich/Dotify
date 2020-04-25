@@ -10,10 +10,10 @@
         android:id="@+id/songImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_constraintLeft_toLeftOf="parent"
-        android:layout_constraintTop_toTopOf="parent"
-
-        android:src="@mipmap/ic_launcher"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:src="@mipmap/ic_launcher"
+        android:contentDescription="Album Art" />
 
     <TextView
         android:id="@+id/songName"
@@ -23,7 +23,7 @@
         app:layout_constraintLeft_toRightOf="@id/songImage"
         app:layout_constraintTop_toTopOf="@id/songImage"
         app:layout_constraintBottom_toBottomOf="@id/songImage"
-        android:layout_marginLeft="16dp"
+
         android:textSize="20sp"
         />
 
@@ -35,7 +35,6 @@
         app:layout_constraintLeft_toRightOf="@id/songImage"
         app:layout_constraintTop_toBottomOf="@id/songName"
         app:layout_constraintBottom_toBottomOf="@id/songImage"
-        android:layout_marginLeft="16dp"
         android:textSize="15sp"
         />
 
