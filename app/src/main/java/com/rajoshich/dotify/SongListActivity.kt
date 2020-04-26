@@ -3,6 +3,7 @@ package com.rajoshich.dotify
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
 import com.rajoshich.dotify.MainActivity.Companion.SONG_KEY
@@ -22,15 +23,19 @@ class SongListActivity : AppCompatActivity() {
         rvSongs.adapter = songAdapter
 
         songAdapter.onSongClickListener = { song ->
-            songDisplay.text = getString(R.string.playerMessage).format(song.title, song.artist)
+            val msg = ("${song.title} - ${song.artist}")
+            songDisplay.text = msg
             playerSong = song
         }
 
         songDisplay.setOnClickListener {
-           val intent = Intent(this, MainActivity::class.java)
+            if (playerSong != null) {
+                val intent = Intent(this, MainActivity::class.java)
                 intent.putExtra(SONG_KEY, playerSong)
-
-            startActivity(intent)
+                startActivity(intent)
+            } else {
+                Toast.makeText(this, "No song selected", Toast.LENGTH_LONG).show()
+            }
         }
 
 

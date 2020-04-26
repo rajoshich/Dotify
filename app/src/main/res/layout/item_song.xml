@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_margin="10dp"
+    android:layout_margin="16dp"
     android:foreground="?selectableItemBackground">
 
 
@@ -15,7 +15,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@mipmap/ic_launcher"
-        android:contentDescription="Album Art" />
+        android:contentDescription="@string/album_art" />
 
     <TextView
         android:id="@+id/songName"
@@ -25,6 +25,8 @@
         app:layout_constraintLeft_toRightOf="@id/songImage"
         app:layout_constraintTop_toTopOf="@id/songImage"
         android:layout_marginLeft="16dp"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:textSize="23sp"
         />
 
@@ -37,6 +39,8 @@
         app:layout_constraintTop_toBottomOf="@id/songName"
         app:layout_constraintBottom_toBottomOf="@id/songImage"
         android:layout_marginLeft="16dp"
+        android:ellipsize="end"
+        android:maxLines="1"
         android:textSize="18sp"
         />
 

@@ -25,6 +25,8 @@ class MainActivity : AppCompatActivity() {
             cover.setImageResource(song.largeImageID)
             songName.text = song.title
             artists.text = song.artist
+        } else {
+            Toast.makeText(this, "No song selected", Toast.LENGTH_LONG).show()
         }
 
 
