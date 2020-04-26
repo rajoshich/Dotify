@@ -19,6 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        title
         setContentView(R.layout.activity_main)
         val song:Song? = intent.getParcelableExtra(SONG_KEY)
         if (song != null) {

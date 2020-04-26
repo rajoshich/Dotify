@@ -27,7 +27,7 @@
         android:layout_marginLeft="16dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textSize="23sp"
+        android:textSize="20sp"
         />
 
     <TextView
@@ -41,7 +41,7 @@
         android:layout_marginLeft="16dp"
         android:ellipsize="end"
         android:maxLines="1"
-        android:textSize="18sp"
+        android:textSize="16sp"
         />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

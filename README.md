@@ -1,9 +1,10 @@
 # Dotify App by Rajoshi C
+## Homework 2 (on branch hw2)
 
 This is an app that lets users listen to music on the cloud.
 
 ## Extra credit
-I have completed extra credit #1 and #5.
+I have completed extra credit #3.
 
 ## Screenshots
 <img src="./screenshot.jpg" alt="Screenshot of the app" height="500" />

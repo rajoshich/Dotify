@@ -59,10 +59,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="La La Land"
-        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textSize="32sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cover" />
+        app:layout_constraintTop_toBottomOf="@id/cover"
+        android:layout_marginTop="30dp"/>
 
     <TextView
         android:id="@+id/artists"
@@ -72,6 +74,7 @@
         android:maxLines="1"
         android:singleLine="true"
         android:textSize="20sp"
+        android:layout_marginTop="15dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/songName" />
@@ -81,6 +84,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20sp"
+        android:padding="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/artists" />
@@ -92,7 +96,6 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/playnumber"
-
         >
 
 
