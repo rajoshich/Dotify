@@ -56,7 +56,6 @@ class SongListAdapter(private var listOfSongs: List<Song>, val context: Context)
                onSongClickListener?.invoke(song)
             }
 
-
         }
     }
 

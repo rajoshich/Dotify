@@ -7,21 +7,32 @@ import android.view.View
 import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.ericchee.songdataprovider.Song
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private var randomNumber = Random.nextInt(200, 100000)
+    companion object {
+        const val SONG_KEY = "SONG_KEY"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        val song:Song? = intent.getParcelableExtra(SONG_KEY)
+        if (song != null) {
+            cover.setImageResource(song.largeImageID)
+            songName.text = song.title
+            artists.text = song.artist
+        }
 
-        playnumber.text = (randomNumber.toString() + " plays")
+
+        playnumber.text = ("$randomNumber plays")
 
         play.setOnClickListener {
             randomNumber++
-            playnumber.text = (randomNumber.toString() + " plays")
+            playnumber.text = ("$randomNumber plays")
         }
 
         next.setOnClickListener{
@@ -32,25 +43,25 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Skipping to previous track", Toast.LENGTH_SHORT).show()
         }
 
-        changeuser.setOnClickListener {
-            if (changeuser.text == "Apply") {
-                inputuser.visibility = View.GONE
-                if (inputuser.text.toString().trim().isEmpty()) {
-                    Toast.makeText(this, "Username can't be null.", Toast.LENGTH_SHORT).show()
-                    username.visibility = View.GONE
-                    inputuser.visibility = View.VISIBLE
-                    changeuser.text = "Apply"
-                } else {
-                    username.text = inputuser.text
-                    changeuser.text = "Change user"
-                    username.visibility = View.VISIBLE
-                }
-            }else {
-                username.visibility = View.GONE
-                inputuser.visibility = View.VISIBLE
-                changeuser.text = "Apply"
-            }
-        }
+//        changeuser.setOnClickListener {
+//            if (changeuser.text == "Apply") {
+//                inputuser.visibility = View.GONE
+//                if (inputuser.text.toString().trim().isEmpty()) {
+//                    Toast.makeText(this, "Username can't be null.", Toast.LENGTH_SHORT).show()
+//                    username.visibility = View.GONE
+//                    inputuser.visibility = View.VISIBLE
+//                    changeuser.text = "Apply"
+//                } else {
+//                    username.text = inputuser.text
+//                    changeuser.text = "Change user"
+//                    username.visibility = View.VISIBLE
+//                }
+//            }else {
+//                username.visibility = View.GONE
+//                inputuser.visibility = View.VISIBLE
+//                changeuser.text = "Apply"
+//            }
+//        }
 
     }
 

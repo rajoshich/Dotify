@@ -5,46 +5,44 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="16dp"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    >
 
+<!--    <LinearLayout-->
+<!--        android:id="@+id/userlayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintTop_toTopOf="parent">-->
 
+<!--        <TextView-->
+<!--            android:id="@+id/username"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="2"-->
+<!--            android:text="rajoshi99"-->
+<!--            android:textSize="20sp"-->
+<!--            android:visibility="visible" />-->
 
+<!--        &lt;!&ndash;        app:layout_constraintTop_toBottomOf=""&ndash;&gt;-->
 
-    <LinearLayout
-        android:id="@+id/userlayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
+<!--        <EditText-->
+<!--            android:id="@+id/inputuser"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="left"-->
+<!--            android:layout_weight="2"-->
+<!--            android:textSize="20sp"-->
+<!--            android:visibility="gone" />-->
 
-        <TextView
-            android:id="@+id/username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="rajoshi99"
-            android:textSize="20sp"
-            android:visibility="visible" />
-
-        <!--        app:layout_constraintTop_toBottomOf=""-->
-
-        <EditText
-            android:id="@+id/inputuser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_weight="2"
-            android:textSize="20sp"
-            android:visibility="gone" />
-
-        <Button
-            android:id="@+id/changeuser"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Change User"
-            android:textSize="15sp"
-            android:textStyle="normal" />
-    </LinearLayout>
+<!--        <Button-->
+<!--            android:id="@+id/changeuser"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="1"-->
+<!--            android:text="Change User"-->
+<!--            android:textSize="15sp"-->
+<!--            android:textStyle="normal" />-->
+<!--    </LinearLayout>-->
 
     <ImageView
         android:id="@+id/cover"
@@ -54,7 +52,7 @@
         android:src="@drawable/album_art"
         app:layout_constraintDimensionRatio="1:1"
         app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/userlayout" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/songName"
