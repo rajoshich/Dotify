@@ -13,15 +13,16 @@ import kotlin.random.Random
 
 class MainActivity : AppCompatActivity() {
     private var randomNumber = Random.nextInt(200, 100000)
+
     companion object {
         const val SONG_KEY = "SONG_KEY"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        title
         setContentView(R.layout.activity_main)
-        val song:Song? = intent.getParcelableExtra(SONG_KEY)
+        val song: Song? = intent.getParcelableExtra(SONG_KEY)
+
         if (song != null) {
             cover.setImageResource(song.largeImageID)
             songName.text = song.title
@@ -30,7 +31,6 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "No song selected", Toast.LENGTH_LONG).show()
         }
 
-
         playnumber.text = ("$randomNumber plays")
 
         play.setOnClickListener {
@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity() {
             playnumber.text = ("$randomNumber plays")
         }
 
-        next.setOnClickListener{
+        next.setOnClickListener {
             Toast.makeText(this, "Skipping to next track", Toast.LENGTH_SHORT).show()
         }
 

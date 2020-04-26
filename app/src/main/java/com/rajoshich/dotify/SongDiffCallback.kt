@@ -11,7 +11,6 @@ class SongDiffCallback(
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val song:Song = oldSongs[oldItemPosition]
         val newSong:Song = newSongs[newItemPosition]
-
        return song.id == newSong.id
     }
 

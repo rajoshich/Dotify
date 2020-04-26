@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".SongListActivity">
 
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSongs"
         android:layout_width="0dp"
@@ -15,19 +14,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        tools:listitem="@layout/item_song"
-        />
-
+        tools:listitem="@layout/item_song"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toBottomOf="parent"
         android:background="@color/colorAccent"
-        android:elevation="8dp"
-
-        >
-
+        android:elevation="8dp">
 
     <TextView
         android:id="@+id/songDisplay"
@@ -38,9 +32,7 @@
         android:padding="16dp"
         android:ellipsize="end"
         android:maxLines="1"
-        app:layout_constraintBottom_toBottomOf="parent"
-
-        />
+        app:layout_constraintBottom_toBottomOf="parent" />
 
     <ImageView
         android:id="@+id/shuffle"
@@ -52,6 +44,6 @@
         android:layout_marginRight="16dp"
         android:layout_marginLeft="16dp"
         android:contentDescription="@string/shuffle" />
-    </LinearLayout>
 
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

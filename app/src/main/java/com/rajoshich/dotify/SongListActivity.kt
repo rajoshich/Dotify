@@ -17,8 +17,7 @@ class SongListActivity : AppCompatActivity() {
         setContentView(R.layout.activity_song_list)
         title = "All Songs"
         val allSongs: List<Song> = SongDataProvider.getAllSongs();
-        var playerSong:Song?=null
-
+        var playerSong: Song? = null
         val songAdapter = SongListAdapter(allSongs, this)
         rvSongs.adapter = songAdapter
 
@@ -38,12 +37,9 @@ class SongListActivity : AppCompatActivity() {
             }
         }
 
-
         shuffle.setOnClickListener {
             val newSongs = allSongs.shuffled()
             songAdapter.change(newSongs)
         }
-
-
     }
 }

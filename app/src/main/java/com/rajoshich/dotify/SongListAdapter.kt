@@ -13,16 +13,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ericchee.songdataprovider.Song
 
-class SongListAdapter(listOfSongs: List<Song>, val context: Context): RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
+class SongListAdapter(listOfSongs: List<Song>, val context: Context) :
+    RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
 
     private var listOfSongs: List<Song> = listOfSongs.toList()
-
     var onSongClickListener: ((song: Song) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
-       val view = LayoutInflater.from(parent.context).inflate(R.layout.item_song, parent, false)
-
-
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_song, parent, false)
         return SongViewHolder(view)
     }
 
@@ -44,23 +42,17 @@ class SongListAdapter(listOfSongs: List<Song>, val context: Context): RecyclerVi
         listOfSongs = newSongs
     }
 
-     inner class SongViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         private val songName = itemView.findViewById<TextView>(R.id.songName)
-
         private val songImg = itemView.findViewById<ImageView>(R.id.songImage)
-
-        private val songArtist =  itemView.findViewById<TextView>(R.id.songArtist)
-
-        private val songDisplay =  itemView.findViewById<TextView>(R.id.songDisplay)
-
+        private val songArtist = itemView.findViewById<TextView>(R.id.songArtist)
 
         fun bind(song: Song) {
             songName.text = song.title
             songArtist.text = song.artist
             songImg.setImageResource(song.smallImageID)
-
-            itemView.setOnClickListener{
-               onSongClickListener?.invoke(song)
+            itemView.setOnClickListener {
+                onSongClickListener?.invoke(song)
             }
 
         }
