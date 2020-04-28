@@ -8,7 +8,6 @@ import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
 import com.rajoshich.dotify.MainActivity.Companion.SONG_KEY
 import kotlinx.android.synthetic.main.activity_song_list.*
-import java.util.Collections.shuffle
 
 class SongListActivity : AppCompatActivity() {
 

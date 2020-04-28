@@ -1,19 +1,15 @@
 package com.rajoshich.dotify
 
-import android.content.Context
-import android.media.Image
-import android.provider.Settings.Global.getString
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ericchee.songdataprovider.Song
 
-class SongListAdapter(listOfSongs: List<Song>, val context: Context) :
+class SongListAdapter(listOfSongs: List<Song>, val context: SongListActivity) :
     RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
 
     private var listOfSongs: List<Song> = listOfSongs.toList()
