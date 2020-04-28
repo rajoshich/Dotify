@@ -27,7 +27,7 @@ class SongListFragment:Fragment() {
 
         val allSongs: List<Song> = SongDataProvider.getAllSongs();
         var playerSong: Song? = null
-        val songAdapter = SongListAdapter(allSongs, context = )
+        val songAdapter = SongListAdapter(allSongs, this )
         rvSongs.adapter = songAdapter
 
         songAdapter.onSongClickListener = { song ->
