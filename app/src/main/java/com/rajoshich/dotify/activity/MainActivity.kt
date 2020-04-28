@@ -1,13 +1,10 @@
-package com.rajoshich.dotify
+package com.rajoshich.dotify.activity
 
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.EditText
-import android.widget.TextView
 import android.widget.Toast
 import com.ericchee.songdataprovider.Song
+import com.rajoshich.dotify.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 

@@ -8,8 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ericchee.songdataprovider.Song
+import com.rajoshich.dotify.activity.SongListActivity
 
-class SongListAdapter(listOfSongs: List<Song>, val context: SongListActivity) :
+class SongListAdapter(
+    listOfSongs: List<Song>) :
     RecyclerView.Adapter<SongListAdapter.SongViewHolder>() {
 
     private var listOfSongs: List<Song> = listOfSongs.toList()

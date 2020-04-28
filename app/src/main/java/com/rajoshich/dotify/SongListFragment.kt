@@ -9,10 +9,15 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
+import com.rajoshich.dotify.activity.MainActivity
+import com.rajoshich.dotify.activity.SongListActivity
 import kotlinx.android.synthetic.main.activity_song_list.*
 
 
 class SongListFragment:Fragment() {
+
+
+    private val allSongs: List<Song> = SongDataProvider.getAllSongs();
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -25,9 +30,8 @@ class SongListFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val allSongs: List<Song> = SongDataProvider.getAllSongs();
         var playerSong: Song? = null
-        val songAdapter = SongListAdapter(allSongs, this )
+         val songAdapter = SongListAdapter(allSongs)
         rvSongs.adapter = songAdapter
 
         songAdapter.onSongClickListener = { song ->
@@ -46,9 +50,10 @@ class SongListFragment:Fragment() {
             }
         }
 
-
-
-
+        shuffle.setOnClickListener {
+            val newSongs = allSongs.shuffled()
+            songAdapter.change(newSongs)
+        }
 
     }
 
