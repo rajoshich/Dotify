@@ -51,7 +51,7 @@ class MainSongActivity : AppCompatActivity() {
         return super.onNavigateUp()
     }
 
-    override fun onSongClicked(song: Song) {
+     fun onSongClicked(song: Song) {
         var nowPlayingFragment = getSongDetailFragment()
         if (nowPlayingFragment == null) {
             nowPlayingFragment = NowPlayingFragment()

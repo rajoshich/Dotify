@@ -50,7 +50,7 @@ class NowPlayingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        updateSong()
+        updateSongView()
     }
 
     private fun updateSongView() {
