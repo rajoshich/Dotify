@@ -5,10 +5,11 @@ import android.os.Bundle
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
 import com.rajoshich.dotify.NowPlayingFragment
+import com.rajoshich.dotify.OnSongClickListener
 import com.rajoshich.dotify.R
 import com.rajoshich.dotify.SongListFragment
 
-class MainSongActivity : AppCompatActivity() {
+class MainSongActivity : AppCompatActivity(), OnSongClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,6 +20,7 @@ class MainSongActivity : AppCompatActivity() {
 
         val argumentBundle = Bundle().apply {
             putParcelableArrayList(NowPlayingFragment.ARG_SONG, ArrayList(allSongs))
+            // put parcelable array list Array list<songs>
         }
 
         nowPlayingFragment.arguments = argumentBundle
@@ -51,7 +53,7 @@ class MainSongActivity : AppCompatActivity() {
         return super.onNavigateUp()
     }
 
-     fun onSongClicked(song: Song) {
+    override fun onSongClicked(song: Song) {
         var nowPlayingFragment = getSongDetailFragment()
         if (nowPlayingFragment == null) {
             nowPlayingFragment = NowPlayingFragment()

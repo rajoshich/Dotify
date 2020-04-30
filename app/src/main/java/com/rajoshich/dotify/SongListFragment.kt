@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
-import com.rajoshich.dotify.activity.PlayerActivity
+import com.rajoshich.dotify.activity.MainSongActivity
 import com.rajoshich.dotify.activity.SongListActivity
 import kotlinx.android.synthetic.main.activity_song_list.*
 
@@ -19,7 +19,7 @@ class SongListFragment:Fragment() {
     private lateinit var songListAdapter: SongListAdapter
     private var onSongClickListener: OnSongClickListener? = null
 
-    private val allSongs: List<Song> = SongDataProvider.getAllSongs();
+    private val allSongs: List<Song> = SongDataProvider.getAllSongs()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -40,7 +40,7 @@ class SongListFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-       // var playerSong: Song? = null
+        var playerSong: Song? = null
         songListAdapter = SongListAdapter(allSongs)
         rvSongs.adapter = songListAdapter
 
@@ -48,17 +48,18 @@ class SongListFragment:Fragment() {
             onSongClickListener?.onSongClicked(song)
             val msg = ("${song.title} - ${song.artist}")
             songDisplay.text = msg
+            playerSong = song
 
         }
 
         songDisplay.setOnClickListener {
-            startActivityForResult(Intent(context, PlayerActivity::class.java),
+            startActivityForResult(Intent(context, MainSongActivity::class.java),
                 SongListActivity.COMPOSE_REQUEST_CODE)
 
 
 //            if (playerSong != null) {
-//                val intent = Intent(context, MainActivity::class.java)
-//                intent.putExtra(MainActivity.SONG_KEY, playerSong)
+//                val intent = Intent(context, NowPlayingActivity::class.java)
+//                intent.putExtra(NowPlayingActivity.SONG_KEY, playerSong)
 //                startActivity(intent)
 //            } else {
 //                Toast.makeText(context, "No song selected", Toast.LENGTH_LONG).show()
@@ -74,6 +75,3 @@ class SongListFragment:Fragment() {
 
 }
 
-interface OnSongClickListener {
-    fun onSongClicked(song: Song)
-}

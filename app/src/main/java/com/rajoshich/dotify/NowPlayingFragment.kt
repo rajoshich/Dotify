@@ -7,7 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.ericchee.songdataprovider.Song
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_now_playing.*
+
 import kotlin.random.Random
 
 /**
