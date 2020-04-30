@@ -16,6 +16,7 @@ import kotlin.random.Random
 class NowPlayingFragment : Fragment() {
 
     private var song: Song? = null
+
     companion object {
         val TAG: String = NowPlayingFragment::class.java.simpleName
         const val ARG_SONG = "arg_song"
@@ -49,7 +50,6 @@ class NowPlayingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         updateSongView()
     }
 

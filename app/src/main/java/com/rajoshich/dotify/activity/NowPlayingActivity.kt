@@ -8,7 +8,7 @@ import com.rajoshich.dotify.R
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlin.random.Random
 
-class MainActivity : AppCompatActivity() {
+class NowPlayingActivity : AppCompatActivity() {
     private var randomNumber = Random.nextInt(200, 100000)
 
     companion object {
