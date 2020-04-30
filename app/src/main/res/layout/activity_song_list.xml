@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activity.SongListActivity">
+    android:background="#00BCD4">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvSongs"
@@ -46,4 +46,5 @@
         android:contentDescription="@string/shuffle" />
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
+import com.rajoshich.dotify.activity.PlayerActivity
 import com.rajoshich.dotify.activity.SongListActivity
 import kotlinx.android.synthetic.main.activity_song_list.*
 
@@ -39,19 +40,19 @@ class SongListFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var playerSong: Song? = null
-         val songAdapter = SongListAdapter(allSongs)
-        rvSongs.adapter = songAdapter
+       // var playerSong: Song? = null
+        songListAdapter = SongListAdapter(allSongs)
+        rvSongs.adapter = songListAdapter
 
-        songAdapter.onSongClickListener = { song ->
+        songListAdapter.onSongClickListener = { song ->
             onSongClickListener?.onSongClicked(song)
-//            val msg = ("${song.title} - ${song.artist}")
-//            songDisplay.text = msg
-//            playerSong = song
+            val msg = ("${song.title} - ${song.artist}")
+            songDisplay.text = msg
+
         }
 
         songDisplay.setOnClickListener {
-            startActivityForResult(Intent(context, PlayerAcitivity::class.java),
+            startActivityForResult(Intent(context, PlayerActivity::class.java),
                 SongListActivity.COMPOSE_REQUEST_CODE)
 
 
@@ -66,7 +67,7 @@ class SongListFragment:Fragment() {
 
         shuffle.setOnClickListener {
             val newSongs = allSongs.shuffled()
-            songAdapter.change(newSongs)
+            songListAdapter.change(newSongs)
         }
 
     }
