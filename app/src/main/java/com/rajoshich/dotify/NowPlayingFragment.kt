@@ -17,15 +17,30 @@ import kotlin.random.Random
 class NowPlayingFragment : Fragment() {
 
     private var song: Song? = null
+    private var currentSong: String? = null
 
     companion object {
         val TAG: String = NowPlayingFragment::class.java.simpleName
         const val ARG_SONG = "arg_song"
+
+        fun getInstance(song: Song) = NowPlayingFragment().apply {
+            arguments = Bundle().apply {
+                putParcelable(ARG_SONG, song)
+            }
+        }
+
     }
     private var randomNumber = Random.nextInt(200, 100000)
 
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        with(arguments!!) {
+            val song = getParcelable<Song>(ARG_SONG)
+        }
+
         playnumber.text = ("$randomNumber plays")
 
         arguments?.let { args ->
@@ -51,6 +66,14 @@ class NowPlayingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+//        val immutableSong = this.song
+//        if (song != null) {
+//            val songNotNull:Song = immutableSong
+//        }
+//        song?.let {
+//            val nonNullEmail = it
+//        }
+
         updateSongView()
     }
 

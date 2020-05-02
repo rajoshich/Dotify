@@ -32,12 +32,12 @@ class SongListAdapter(
     }
 
     fun change(newSongs: List<Song>) {
-//        listOfSongs = newSongs
-//        notifyDataSetChanged()
-        val callback = SongDiffCallback(listOfSongs, newSongs)
-        val res = DiffUtil.calculateDiff(callback)
-        res.dispatchUpdatesTo(this)
         listOfSongs = newSongs
+        notifyDataSetChanged()
+//        val callback = SongDiffCallback(listOfSongs, newSongs)
+//        val res = DiffUtil.calculateDiff(callback)
+//        res.dispatchUpdatesTo(this)
+//        listOfSongs = newSongs
     }
 
     inner class SongViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

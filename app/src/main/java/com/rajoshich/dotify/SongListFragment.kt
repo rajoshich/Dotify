@@ -14,18 +14,50 @@ import com.rajoshich.dotify.activity.SongListActivity
 import kotlinx.android.synthetic.main.activity_song_list.*
 
 
-class SongListFragment:Fragment() {
+class SongListFragment : Fragment() {
 
     private lateinit var songListAdapter: SongListAdapter
     private var onSongClickListener: OnSongClickListener? = null
+    private lateinit var listOfSongs: List<Song>
 
-    private val allSongs: List<Song> = SongDataProvider.getAllSongs()
+    companion object {
+        val TAG = SongListFragment::class.java.simpleName
+        private const val ARG_SONG_LIST = "ARG_SONG_LIST"
+
+        fun getInstance(listOfSongs: List<Song>): SongListFragment {
+            return SongListFragment().apply {
+                arguments = Bundle().apply {
+                    putParcelableArrayList(ARG_SONG_LIST, ArrayList(listOfSongs))
+                }
+            }
+        }
+    }
+
+//    override fun onSaveInstanceState(outState: Bundle) {
+//        super.onSaveInstanceState(outState)
+//        outState.putParcelableArrayList(outState)
+//    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
+
+
         if (context is OnSongClickListener) {
             onSongClickListener = context
         }
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let { args ->
+            with(args) {
+                getParcelableArrayList<Song>(ARG_SONG_LIST)?.let { songs ->
+                    listOfSongs = songs
+
+                }
+            }
+        }
+
     }
 
     override fun onCreateView(
@@ -40,22 +72,23 @@ class SongListFragment:Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        var playerSong: Song? = null
-        songListAdapter = SongListAdapter(allSongs)
+        songListAdapter = SongListAdapter(listOfSongs)
         rvSongs.adapter = songListAdapter
 
         songListAdapter.onSongClickListener = { song ->
+
             onSongClickListener?.onSongClicked(song)
             val msg = ("${song.title} - ${song.artist}")
             songDisplay.text = msg
-            playerSong = song
-
+//            playerSong = song
         }
 
         songDisplay.setOnClickListener {
-            startActivityForResult(Intent(context, MainSongActivity::class.java),
-                SongListActivity.COMPOSE_REQUEST_CODE)
-
+            startActivityForResult(
+                Intent(context, MainSongActivity::class.java),
+                SongListActivity.COMPOSE_REQUEST_CODE
+            )
+        }
 
 //            if (playerSong != null) {
 //                val intent = Intent(context, NowPlayingActivity::class.java)
@@ -64,14 +97,16 @@ class SongListFragment:Fragment() {
 //            } else {
 //                Toast.makeText(context, "No song selected", Toast.LENGTH_LONG).show()
 //            }
-        }
 
-        shuffle.setOnClickListener {
-            val newSongs = allSongs.shuffled()
-            songListAdapter.change(newSongs)
-        }
 
+//        shuffle.setOnClickListener {
+////            val newSongs = listOfSongs.shuffled()
+////            songListAdapter.change(newSongs)
+//        }
     }
-
+    fun shuffle() {
+        listOfSongs
+        songListAdapter.change(listOfSongs)
+    }
 }
 
