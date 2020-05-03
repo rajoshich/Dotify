@@ -86,17 +86,29 @@ class NowPlayingFragment : Fragment() {
     }
 
     private fun updateSongView() {
-        song?.let {
-            cover.setImageResource(it.largeImageID)
-            songName.text = it.title
-            artists.text = it.artist
+        arguments?.let { args ->
+            val song = args.getParcelable<Song>(ARG_SONG)
+            if (song != null) {
+                cover.setImageResource(song.largeImageID)
+                songName.text = song.title
+                artists.text = song.artist
+            }
         }
 
         play.setOnClickListener {
             randomNumber++
            playnumber.text = ("$randomNumber plays")
         }
+        next.setOnClickListener {
+            Toast.makeText(context, "Skipping to next track", Toast.LENGTH_SHORT).show()
+        }
+
+        prev.setOnClickListener {
+            Toast.makeText(context, "Skipping to previous track", Toast.LENGTH_SHORT).show()
+        }
+
     }
+
 
     override fun onSaveInstanceState(outState: Bundle) {
             outState.putInt(ARG_NUM, randomNumber)

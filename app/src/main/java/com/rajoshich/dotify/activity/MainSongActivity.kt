@@ -50,9 +50,11 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
         if (supportFragmentManager.backStackEntryCount > 0) {
             songDisplay.visibility = View.INVISIBLE
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
-
         }
 
+        shuffle.setOnClickListener {
+            shuffled()
+        }
         nowPlaying()
         supportFragmentManager.addOnBackStackChangedListener {
             val hasBackStack = supportFragmentManager.backStackEntryCount > 0
@@ -63,8 +65,6 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
                 songDisplay.visibility = View.VISIBLE
             }
         }
-
-
 
 // always crashes here
 //        shuffle.setOnClickListener {
@@ -112,7 +112,7 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
 //        if (songDisplay != null) {
         songDisplay.setOnClickListener {
                 if (nowPlaying != null) {
-                    songDisplay.visibility = View.INVISIBLE
+                    songDisplay.visibility = View.GONE
 
 
                     var nowPlayingFragment = getNowPlayingFragment()
