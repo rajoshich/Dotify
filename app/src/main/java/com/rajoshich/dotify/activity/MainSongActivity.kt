@@ -18,7 +18,6 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
     private lateinit var listOfSongs: List<Song>
     private var nowPlaying: Song? = null
 
-
     companion object {
         private const val NOW_PLAYING = "NOW_PLAYING"
     }
@@ -45,8 +44,9 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
         }
 
         if (supportFragmentManager.backStackEntryCount > 0) {
-            songDisplay.visibility = View.INVISIBLE
+
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            songDisplay.visibility = View.GONE
         }
 
         shuffled()
@@ -96,7 +96,7 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
     private fun nowPlaying() {
         songDisplay.setOnClickListener {
             if (nowPlaying != null) {
-                songDisplay.visibility = View.INVISIBLE
+                songDisplay.visibility = View.GONE
                 var nowPlayingFragment = getNowPlayingFragment()
                 if (nowPlayingFragment == null) {
                     nowPlayingFragment = NowPlayingFragment()
