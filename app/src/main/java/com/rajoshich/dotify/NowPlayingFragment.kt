@@ -80,26 +80,21 @@ class NowPlayingFragment : Fragment() {
 //            val nonNullEmail = it
 //        }
         if (song!= null) {
-            song?.let {
-                cover.setImageResource(it.largeImageID)
-                songName.text = it.title
-                artists.text = it.artist
-            }
+            updateSongView()
         } else {
             Toast.makeText(context, "No song selected", Toast.LENGTH_LONG).show()
         }
-        updateSongView()
+
     }
 
     private fun updateSongView() {
         arguments?.let { args ->
-            val song = args.getParcelable<Song>(ARG_SONG)
-            if (song != null) {
-                cover.setImageResource(song.largeImageID)
-                songName.text = song.title
-                artists.text = song.artist
+             song = args.getParcelable<Song>(ARG_SONG)
+                cover.setImageResource(song!!.largeImageID)
+//                songName.text = song.title
+//                artists.text = song.artist
             }
-        }
+        
 
         play.setOnClickListener {
             randomNumber++

@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.DiffUtil
 import com.ericchee.songdataprovider.Song
 import kotlinx.android.synthetic.main.activity_song_list.*
 
@@ -17,8 +18,8 @@ class SongListFragment : Fragment() {
     private lateinit var listOfSongs: List<Song>
 
     companion object {
-        val TAG:String = SongListFragment::class.java.simpleName
-         const val ARG_SONG_LIST = "ARG_SONG_LIST"
+        val TAG: String = SongListFragment::class.java.simpleName
+        const val ARG_SONG_LIST = "ARG_SONG_LIST"
 
 //        fun getInstance(listOfSongs: List<Song>): SongListFragment {
 //            return SongListFragment().apply {
@@ -82,27 +83,6 @@ class SongListFragment : Fragment() {
         }
     }
 
-//        songDisplay.setOnClickListener {
-//            startActivityForResult(
-//                Intent(context, MainSongActivity::class.java),
-//                SongListActivity.COMPOSE_REQUEST_CODE
-//            )
-//        }
-
-//            if (playerSong != null) {
-//                val intent = Intent(context, NowPlayingActivity::class.java)
-//                intent.putExtra(NowPlayingActivity.SONG_KEY, playerSong)
-//                startActivity(intent)
-//            } else {
-//                Toast.makeText(context, "No song selected", Toast.LENGTH_LONG).show()
-//            }
-
-
-//        shuffle.setOnClickListener {
-////            val newSongs = listOfSongs.shuffled()
-////            songListAdapter.change(newSongs)
-//        }
-
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -113,9 +93,14 @@ class SongListFragment : Fragment() {
         val newList = listOfSongs.shuffled()
         songListAdapter.change(newList)
         listOfSongs = newList
+//
+//        val callback = SongDiffCallback(listOfSongs, newList)
+//        val res = DiffUtil.calculateDiff(callback)
+//        listOfSongs = newList
+//    }
+
+
     }
-
-
 }
 
 
