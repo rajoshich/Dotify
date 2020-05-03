@@ -61,7 +61,6 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
 //            listFragment.shuffle()
 //        }
 
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
