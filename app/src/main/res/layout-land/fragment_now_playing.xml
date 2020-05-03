@@ -6,17 +6,19 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:background="#FFF"
+
     >
 
 
     <ImageView
         android:id="@+id/cover"
-        android:layout_width="fill_parent"
+        android:layout_width="250dp"
         android:layout_height="0dp"
+        android:backgroundTint="@color/azalea"
         android:layout_marginTop="5dp"
         android:src="@drawable/album_art"
         app:layout_constraintDimensionRatio="1:1"
-        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -25,9 +27,10 @@
         android:layout_height="wrap_content"
         android:textStyle="bold"
         android:textSize="32sp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:text="check"
+        app:layout_constraintLeft_toRightOf="@id/cover"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cover"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="25dp"/>
 
     <TextView
@@ -36,10 +39,11 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
+        android:text="check"
         android:singleLine="true"
         android:textSize="20sp"
         android:layout_marginTop="15dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/cover"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/songName" />
 
@@ -49,7 +53,7 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:padding="10dp"
-        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/cover"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/artists" />
 
@@ -59,7 +63,7 @@
         android:gravity="center"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/playnumber"
+        app:layout_constraintTop_toBottomOf="@id/cover"
         >
 
 

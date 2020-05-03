@@ -7,7 +7,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.ericchee.songdataprovider.Song
-import kotlinx.android.synthetic.main.fragment_now_playing.*
+import kotlinx.android.synthetic.main.fragment_now_playing.artists
+import kotlinx.android.synthetic.main.fragment_now_playing.cover
+import kotlinx.android.synthetic.main.fragment_now_playing.next
+import kotlinx.android.synthetic.main.fragment_now_playing.play
+import kotlinx.android.synthetic.main.fragment_now_playing.playnumber
+import kotlinx.android.synthetic.main.fragment_now_playing.prev
+import kotlinx.android.synthetic.main.fragment_now_playing.songName
 
 import kotlin.random.Random
 
