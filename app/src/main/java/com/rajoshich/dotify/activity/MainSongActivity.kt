@@ -56,7 +56,7 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
             } else {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
-
+                songDisplay.visibility = View.VISIBLE
             }
         }
     }
@@ -86,7 +86,6 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
             } else {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
             }
-            
         }
     }
 
