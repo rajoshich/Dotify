@@ -30,12 +30,6 @@ class NowPlayingFragment : Fragment() {
         val TAG: String = NowPlayingFragment::class.java.simpleName
         const val ARG_SONG = "arg_song"
         const val ARG_NUM = "ARG_NUM"
-
-//        fun getInstance(song: Song) = NowPlayingFragment().apply {
-//            arguments = Bundle().apply {
-//                putParcelable(ARG_SONG, song)
-//            }
-//        }
     }
 
 
@@ -72,26 +66,17 @@ class NowPlayingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        arguments?.let { args ->
-//            song = args.getParcelable<Song>(ARG_SONG)
-//            if (song != null) {
                 updateSongView()
-//            }
-//        }else {
-//            Toast.makeText(context, "No song selected", Toast.LENGTH_LONG).show()
-//        }
-
     }
 
     private fun updateSongView() {
         arguments?.let { args ->
-             song = args.getParcelable<Song>(ARG_SONG)
+             song = args.getParcelable(ARG_SONG)
                 cover.setImageResource(song!!.largeImageID)
                songName.text = song!!.title
                 artists.text = song!!.artist
             playnumber.text = ("$randomNumber plays")
             }
-
 
         play.setOnClickListener {
             randomNumber++
@@ -104,17 +89,12 @@ class NowPlayingFragment : Fragment() {
         prev.setOnClickListener {
             Toast.makeText(context, "Skipping to previous track", Toast.LENGTH_SHORT).show()
         }
-
     }
-
 
     override fun onSaveInstanceState(outState: Bundle) {
             outState.putInt(ARG_NUM, randomNumber)
             outState.putParcelable(ARG_SONG, song)
         super.onSaveInstanceState(outState)
-
     }
 
 }
-
-//

@@ -1,14 +1,12 @@
 package com.rajoshich.dotify.activity
 
-import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.AttributeSet
 import android.view.View
+import android.widget.Toast
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
 import com.rajoshich.dotify.NowPlayingFragment
-import com.rajoshich.dotify.NowPlayingFragment.Companion.ARG_SONG
 import com.rajoshich.dotify.OnSongClickListener
 import com.rajoshich.dotify.R
 import com.rajoshich.dotify.SongListFragment
@@ -43,7 +41,6 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragmentContainer, songListFragment, SongListFragment.TAG)
-          //      .addToBackStack(SongListFragment.TAG)
                 .commit()
         }
 
@@ -52,9 +49,7 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
         }
 
-        shuffle.setOnClickListener {
-            shuffled()
-        }
+        shuffled()
         nowPlaying()
         supportFragmentManager.addOnBackStackChangedListener {
             val hasBackStack = supportFragmentManager.backStackEntryCount > 0
@@ -65,15 +60,6 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
                 songDisplay.visibility = View.VISIBLE
             }
         }
-
-// always crashes here
-//        shuffle.setOnClickListener {
-//            shuffled()
-//        }
-
-
-
-
     }
 
 
@@ -97,7 +83,6 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
                 supportFragmentManager.findFragmentByTag(SongListFragment.TAG) as? SongListFragment
             listFragment?.shuffled()
         }
-
         supportFragmentManager.addOnBackStackChangedListener {
             val hasBackStack = supportFragmentManager.backStackEntryCount > 0
             if (hasBackStack) {
@@ -110,12 +95,10 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
 
 
     private fun nowPlaying() {
-//        if (songDisplay != null) {
+
         songDisplay.setOnClickListener {
                 if (nowPlaying != null) {
-                    songDisplay.visibility = View.GONE
-
-
+                    songDisplay.visibility = View.INVISIBLE
                     var nowPlayingFragment = getNowPlayingFragment()
                     if (nowPlayingFragment == null) {
                         nowPlayingFragment = NowPlayingFragment()
@@ -131,11 +114,12 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
                     } else {
                         nowPlayingFragment.updateSong(nowPlaying!!)
                     }
-                }
+                } else {
+          Toast.makeText(this, "No song selected", Toast.LENGTH_LONG).show()
+        }
 
             }
         }
-
 
 
     override fun onSongClicked(song: Song) {

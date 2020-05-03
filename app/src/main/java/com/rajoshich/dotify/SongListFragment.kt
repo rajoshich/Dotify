@@ -20,20 +20,7 @@ class SongListFragment : Fragment() {
     companion object {
         val TAG: String = SongListFragment::class.java.simpleName
         const val ARG_SONG_LIST = "ARG_SONG_LIST"
-
-//        fun getInstance(listOfSongs: List<Song>): SongListFragment {
-//            return SongListFragment().apply {
-//                arguments = Bundle().apply {
-//                    putParcelableArrayList(ARG_SONG_LIST, ArrayList(listOfSongs))
-//                }
-//            }
-//        }
     }
-
-//    override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//        outState.putParcelableArrayList(outState)
-//    }
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -41,6 +28,11 @@ class SongListFragment : Fragment() {
         if (context is OnSongClickListener) {
             onSongClickListener = context
         }
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList(ARG_SONG_LIST, ArrayList(listOfSongs))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -77,23 +69,13 @@ class SongListFragment : Fragment() {
         rvSongs.adapter = songListAdapter
         songListAdapter.onSongClickListener = { song ->
             onSongClickListener?.onSongClicked(song)
-//            val msg = ("${song.title} - ${song.artist}")
-//            songDisplay.text = msg
-//            playerSong = song
         }
-    }
-
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        outState.putParcelableArrayList(ARG_SONG_LIST, ArrayList(listOfSongs))
     }
 
     fun shuffled() {
         val newList = listOfSongs.shuffled()
         songListAdapter.change(newList)
         listOfSongs = newList
-
     }
 }
 
