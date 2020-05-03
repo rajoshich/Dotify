@@ -8,7 +8,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.ericchee.songdataprovider.Song
-import com.rajoshich.dotify.activity.SongListActivity
 
 class SongListAdapter(
     listOfSongs: List<Song>) :

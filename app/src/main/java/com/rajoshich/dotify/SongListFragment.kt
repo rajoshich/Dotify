@@ -1,16 +1,12 @@
 package com.rajoshich.dotify
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.ericchee.songdataprovider.Song
-import com.ericchee.songdataprovider.SongDataProvider
-import com.rajoshich.dotify.activity.MainSongActivity
-import com.rajoshich.dotify.activity.SongListActivity
 import kotlinx.android.synthetic.main.activity_song_list.*
 
 
@@ -21,16 +17,16 @@ class SongListFragment : Fragment() {
     private lateinit var listOfSongs: List<Song>
 
     companion object {
-        val TAG = SongListFragment::class.java.simpleName
-        private const val ARG_SONG_LIST = "ARG_SONG_LIST"
+        val TAG:String = SongListFragment::class.java.simpleName
+         const val ARG_SONG_LIST = "ARG_SONG_LIST"
 
-        fun getInstance(listOfSongs: List<Song>): SongListFragment {
-            return SongListFragment().apply {
-                arguments = Bundle().apply {
-                    putParcelableArrayList(ARG_SONG_LIST, ArrayList(listOfSongs))
-                }
-            }
-        }
+//        fun getInstance(listOfSongs: List<Song>): SongListFragment {
+//            return SongListFragment().apply {
+//                arguments = Bundle().apply {
+//                    putParcelableArrayList(ARG_SONG_LIST, ArrayList(listOfSongs))
+//                }
+//            }
+//        }
     }
 
 //    override fun onSaveInstanceState(outState: Bundle) {
@@ -41,7 +37,6 @@ class SongListFragment : Fragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
-
         if (context is OnSongClickListener) {
             onSongClickListener = context
         }
@@ -49,15 +44,20 @@ class SongListFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let { args ->
-            with(args) {
-                getParcelableArrayList<Song>(ARG_SONG_LIST)?.let { songs ->
-                    listOfSongs = songs
-
+        if (savedInstanceState != null) {
+            with(savedInstanceState) {
+                listOfSongs = getParcelableArrayList<Song>(ARG_SONG_LIST) as List<Song>
+            }
+        } else {
+            arguments?.let { args ->
+                with(args) {
+                    getParcelableArrayList<Song>(ARG_SONG_LIST)?.let { songs ->
+                        listOfSongs = songs
+// check
+                    }
                 }
             }
         }
-
     }
 
     override fun onCreateView(
@@ -74,21 +74,20 @@ class SongListFragment : Fragment() {
 
         songListAdapter = SongListAdapter(listOfSongs)
         rvSongs.adapter = songListAdapter
-
         songListAdapter.onSongClickListener = { song ->
-
             onSongClickListener?.onSongClicked(song)
-            val msg = ("${song.title} - ${song.artist}")
-            songDisplay.text = msg
+//            val msg = ("${song.title} - ${song.artist}")
+//            songDisplay.text = msg
 //            playerSong = song
         }
+    }
 
-        songDisplay.setOnClickListener {
-            startActivityForResult(
-                Intent(context, MainSongActivity::class.java),
-                SongListActivity.COMPOSE_REQUEST_CODE
-            )
-        }
+//        songDisplay.setOnClickListener {
+//            startActivityForResult(
+//                Intent(context, MainSongActivity::class.java),
+//                SongListActivity.COMPOSE_REQUEST_CODE
+//            )
+//        }
 
 //            if (playerSong != null) {
 //                val intent = Intent(context, NowPlayingActivity::class.java)
@@ -103,10 +102,20 @@ class SongListFragment : Fragment() {
 ////            val newSongs = listOfSongs.shuffled()
 ////            songListAdapter.change(newSongs)
 //        }
+
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putParcelableArrayList(ARG_SONG_LIST, ArrayList(listOfSongs))
     }
+
     fun shuffle() {
-        listOfSongs
-        songListAdapter.change(listOfSongs)
+        val newList = listOfSongs.shuffled()
+        songListAdapter.change(newList)
+        listOfSongs = newList
     }
+
+
 }
+
 

@@ -17,7 +17,6 @@ import kotlin.random.Random
 class NowPlayingFragment : Fragment() {
 
     private var song: Song? = null
-    private var currentSong: String? = null
 
     companion object {
         val TAG: String = NowPlayingFragment::class.java.simpleName
@@ -28,20 +27,18 @@ class NowPlayingFragment : Fragment() {
                 putParcelable(ARG_SONG, song)
             }
         }
-
     }
-    private var randomNumber = Random.nextInt(200, 100000)
-
+   // private var randomNumber = Random.nextInt(200, 100000)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+//
+//        with(arguments!!) {
+//            val song = getParcelable<Song>(ARG_SONG)
+//        }
 
-        with(arguments!!) {
-            val song = getParcelable<Song>(ARG_SONG)
-        }
-
-        playnumber.text = ("$randomNumber plays")
+      //  playnumber.text = ("$randomNumber plays")
 
         arguments?.let { args ->
             val song = args.getParcelable<Song>(ARG_SONG)
@@ -86,8 +83,8 @@ class NowPlayingFragment : Fragment() {
         }
 
         play.setOnClickListener {
-            randomNumber++
-            playnumber.text = ("$randomNumber plays")
+       //     randomNumber++
+        //    playnumber.text = ("$randomNumber plays")
         }
     }
 
