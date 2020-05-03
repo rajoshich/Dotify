@@ -119,7 +119,7 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
                     if (nowPlayingFragment == null) {
                         nowPlayingFragment = NowPlayingFragment()
                         val argumentBundle = Bundle().apply {
-                            putParcelable(NOW_PLAYING, nowPlaying)
+                            putParcelable(NowPlayingFragment.ARG_SONG, nowPlaying)
                         }
                         nowPlayingFragment.arguments = argumentBundle
                         supportFragmentManager

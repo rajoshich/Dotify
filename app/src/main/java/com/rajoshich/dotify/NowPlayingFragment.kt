@@ -72,18 +72,14 @@ class NowPlayingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-//        val immutableSong = this.song
-//        if (song != null) {
-//            val songNotNull:Song = immutableSong
+//        arguments?.let { args ->
+//            song = args.getParcelable<Song>(ARG_SONG)
+//            if (song != null) {
+                updateSongView()
+//            }
+//        }else {
+//            Toast.makeText(context, "No song selected", Toast.LENGTH_LONG).show()
 //        }
-//        song?.let {
-//            val nonNullEmail = it
-//        }
-        if (song!= null) {
-            updateSongView()
-        } else {
-            Toast.makeText(context, "No song selected", Toast.LENGTH_LONG).show()
-        }
 
     }
 
@@ -91,10 +87,10 @@ class NowPlayingFragment : Fragment() {
         arguments?.let { args ->
              song = args.getParcelable<Song>(ARG_SONG)
                 cover.setImageResource(song!!.largeImageID)
-//                songName.text = song.title
-//                artists.text = song.artist
+               songName.text = song!!.title
+                artists.text = song!!.artist
             }
-        
+
 
         play.setOnClickListener {
             randomNumber++
