@@ -93,33 +93,31 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
         }
     }
 
-
     private fun nowPlaying() {
-
         songDisplay.setOnClickListener {
-                if (nowPlaying != null) {
-                    songDisplay.visibility = View.INVISIBLE
-                    var nowPlayingFragment = getNowPlayingFragment()
-                    if (nowPlayingFragment == null) {
-                        nowPlayingFragment = NowPlayingFragment()
-                        val argumentBundle = Bundle().apply {
-                            putParcelable(NowPlayingFragment.ARG_SONG, nowPlaying)
-                        }
-                        nowPlayingFragment.arguments = argumentBundle
-                        supportFragmentManager
-                            .beginTransaction()
-                            .add(R.id.fragmentContainer, nowPlayingFragment, NowPlayingFragment.TAG)
-                            .addToBackStack(NowPlayingFragment.TAG)
-                            .commit()
-                    } else {
-                        nowPlayingFragment.updateSong(nowPlaying!!)
+            if (nowPlaying != null) {
+                songDisplay.visibility = View.INVISIBLE
+                var nowPlayingFragment = getNowPlayingFragment()
+                if (nowPlayingFragment == null) {
+                    nowPlayingFragment = NowPlayingFragment()
+                    val argumentBundle = Bundle().apply {
+                        putParcelable(NowPlayingFragment.ARG_SONG, nowPlaying)
                     }
+                    nowPlayingFragment.arguments = argumentBundle
+                    supportFragmentManager
+                        .beginTransaction()
+                        .add(R.id.fragmentContainer, nowPlayingFragment, NowPlayingFragment.TAG)
+                        .addToBackStack(NowPlayingFragment.TAG)
+                        .commit()
                 } else {
-          Toast.makeText(this, "No song selected", Toast.LENGTH_LONG).show()
-        }
-
+                    nowPlayingFragment.updateSong(nowPlaying!!)
+                }
+            } else {
+                Toast.makeText(this, "No song selected", Toast.LENGTH_LONG).show()
             }
+
         }
+    }
 
 
     override fun onSongClicked(song: Song) {

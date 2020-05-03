@@ -17,14 +17,10 @@ import kotlinx.android.synthetic.main.fragment_now_playing.songName
 
 import kotlin.random.Random
 
-/**
- * A simple [Fragment] subclass.
- */
 class NowPlayingFragment : Fragment() {
 
     private var song: Song? = null
     private var randomNumber = Random.nextInt(200, 100000)
-
 
     companion object {
         val TAG: String = NowPlayingFragment::class.java.simpleName
@@ -32,26 +28,22 @@ class NowPlayingFragment : Fragment() {
         const val ARG_NUM = "ARG_NUM"
     }
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-   if (savedInstanceState != null) {
+        if (savedInstanceState != null) {
             with(savedInstanceState) {
                 randomNumber = getInt(ARG_NUM)
                 song = getParcelable(ARG_SONG)
             }
         } else {
             arguments?.let { args ->
-                 song = args.getParcelable(ARG_SONG)
-                if (song != null) {
-                    this.song = song
-                }
+                song = args.getParcelable(ARG_SONG)
             }
-       randomNumber = Random.nextInt(200, 100000)
+            randomNumber = Random.nextInt(200, 100000)
         }
     }
 
-    fun updateSong(song :Song) {
+    fun updateSong(song: Song) {
         this.song = song
         updateSongView()
     }
@@ -66,21 +58,21 @@ class NowPlayingFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-                updateSongView()
+        updateSongView()
     }
 
     private fun updateSongView() {
         arguments?.let { args ->
-             song = args.getParcelable(ARG_SONG)
-                cover.setImageResource(song!!.largeImageID)
-               songName.text = song!!.title
-                artists.text = song!!.artist
+            song = args.getParcelable(ARG_SONG)
+            cover.setImageResource(song!!.largeImageID)
+            songName.text = song!!.title
+            artists.text = song!!.artist
             playnumber.text = ("$randomNumber plays")
-            }
+        }
 
         play.setOnClickListener {
             randomNumber++
-           playnumber.text = ("$randomNumber plays")
+            playnumber.text = ("$randomNumber plays")
         }
         next.setOnClickListener {
             Toast.makeText(context, "Skipping to next track", Toast.LENGTH_SHORT).show()
@@ -92,8 +84,8 @@ class NowPlayingFragment : Fragment() {
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
-            outState.putInt(ARG_NUM, randomNumber)
-            outState.putParcelable(ARG_SONG, song)
+        outState.putInt(ARG_NUM, randomNumber)
+        outState.putParcelable(ARG_SONG, song)
         super.onSaveInstanceState(outState)
     }
 

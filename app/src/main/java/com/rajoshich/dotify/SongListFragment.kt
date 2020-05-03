@@ -46,7 +46,6 @@ class SongListFragment : Fragment() {
                 with(args) {
                     getParcelableArrayList<Song>(ARG_SONG_LIST)?.let { songs ->
                         listOfSongs = songs
-// check
                     }
                 }
             }
