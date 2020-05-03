@@ -44,9 +44,8 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
         }
 
         if (supportFragmentManager.backStackEntryCount > 0) {
-
             supportActionBar?.setDisplayHomeAsUpEnabled(true)
-            songDisplay.visibility = View.GONE
+            songDisplay.visibility = View.INVISIBLE
         }
 
         shuffled()
@@ -57,7 +56,7 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
             } else {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
-                songDisplay.visibility = View.VISIBLE
+
             }
         }
     }
@@ -73,9 +72,6 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
         super.onSaveInstanceState(outState)
         outState.putParcelable(NOW_PLAYING, nowPlaying)
     }
-
-    private fun getNowPlayingFragment() =
-        supportFragmentManager.findFragmentByTag(NowPlayingFragment.TAG) as? NowPlayingFragment
 
     private fun shuffled() {
         shuffle.setOnClickListener {
@@ -93,10 +89,13 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
         }
     }
 
+    private fun getNowPlayingFragment() =
+        supportFragmentManager.findFragmentByTag(NowPlayingFragment.TAG) as? NowPlayingFragment
+
     private fun nowPlaying() {
         songDisplay.setOnClickListener {
             if (nowPlaying != null) {
-                songDisplay.visibility = View.GONE
+                songDisplay.visibility = View.INVISIBLE
                 var nowPlayingFragment = getNowPlayingFragment()
                 if (nowPlayingFragment == null) {
                     nowPlayingFragment = NowPlayingFragment()
