@@ -1,14 +1,19 @@
 package com.rajoshich.dotify.activity
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.AttributeSet
+import android.view.View
 import com.ericchee.songdataprovider.Song
 import com.ericchee.songdataprovider.SongDataProvider
 import com.rajoshich.dotify.NowPlayingFragment
+import com.rajoshich.dotify.NowPlayingFragment.Companion.ARG_SONG
 import com.rajoshich.dotify.OnSongClickListener
 import com.rajoshich.dotify.R
 import com.rajoshich.dotify.SongListFragment
-import kotlinx.android.synthetic.main.activity_song_list.*
+import kotlinx.android.synthetic.main.activity_main_song.*
+
 
 class MainSongActivity : AppCompatActivity(), OnSongClickListener {
 
@@ -38,33 +43,43 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
             supportFragmentManager
                 .beginTransaction()
                 .add(R.id.fragmentContainer, songListFragment, SongListFragment.TAG)
-                .addToBackStack(SongListFragment.TAG)
+          //      .addToBackStack(SongListFragment.TAG)
                 .commit()
         }
 
+        if (supportFragmentManager.backStackEntryCount > 0) {
+            songDisplay.visibility = View.INVISIBLE
+            supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        }
+
+        nowPlaying()
         supportFragmentManager.addOnBackStackChangedListener {
             val hasBackStack = supportFragmentManager.backStackEntryCount > 0
             if (hasBackStack) {
                 supportActionBar?.setDisplayHomeAsUpEnabled(true)
             } else {
                 supportActionBar?.setDisplayHomeAsUpEnabled(false)
+                songDisplay.visibility = View.VISIBLE
             }
         }
 
-        if(supportFragmentManager.backStackEntryCount > 0) {
-            supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        }
 
-//        shuffled()
+
+// always crashes here
 //        shuffle.setOnClickListener {
-//            val listFragment = supportFragmentManager.findFragmentByTag(SongListFragment.TAG) as SongListFragment
-//            listFragment.shuffle()
+//            shuffled()
 //        }
+
+
+
 
     }
 
+
     override fun onSupportNavigateUp(): Boolean {
         supportFragmentManager.popBackStack()
+        songDisplay.visibility = View.VISIBLE
         return super.onNavigateUp()
     }
 
@@ -73,35 +88,57 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
         outState.putParcelable(NOW_PLAYING, nowPlaying)
     }
 
-    private fun getNowPlayingFragment() = supportFragmentManager.findFragmentByTag(NowPlayingFragment.TAG) as? NowPlayingFragment
+    private fun getNowPlayingFragment() =
+        supportFragmentManager.findFragmentByTag(NowPlayingFragment.TAG) as? NowPlayingFragment
 
     private fun shuffled() {
-                shuffle.setOnClickListener {
-            val listFragment = supportFragmentManager.findFragmentByTag(SongListFragment.TAG) as SongListFragment
-            listFragment.shuffle()
+        shuffle.setOnClickListener {
+            val listFragment =
+                supportFragmentManager.findFragmentByTag(SongListFragment.TAG) as? SongListFragment
+            listFragment?.shuffled()
+        }
+        supportFragmentManager.addOnBackStackChangedListener {
+            val hasBackStack = supportFragmentManager.backStackEntryCount > 0
+            if (hasBackStack) {
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
+            } else {
+                supportActionBar?.setDisplayHomeAsUpEnabled(false)
+            }
         }
     }
+
 
     private fun nowPlaying() {
-        var nowPlayingFragment = getNowPlayingFragment()
-        if (nowPlayingFragment == null) {
-            nowPlayingFragment = NowPlayingFragment()
-            val argumentBundle = Bundle().apply {
-                putParcelable(NowPlayingFragment.ARG_SONG, nowPlaying)
+//        if (songDisplay != null) {
+        songDisplay.setOnClickListener {
+                if (nowPlaying != null) {
+                    songDisplay.visibility = View.INVISIBLE
+
+
+                    var nowPlayingFragment = getNowPlayingFragment()
+                    if (nowPlayingFragment == null) {
+                        nowPlayingFragment = NowPlayingFragment()
+                        val argumentBundle = Bundle().apply {
+                            putParcelable(NOW_PLAYING, nowPlaying)
+                        }
+                        nowPlayingFragment.arguments = argumentBundle
+                        supportFragmentManager
+                            .beginTransaction()
+                            .add(R.id.fragmentContainer, nowPlayingFragment, NowPlayingFragment.TAG)
+                            .addToBackStack(NowPlayingFragment.TAG)
+                            .commit()
+                    } else {
+                        nowPlayingFragment.updateSong(nowPlaying!!)
+                    }
+                }
+
             }
-            nowPlayingFragment.arguments = argumentBundle
-        } else {
-            nowPlaying?.let { nowPlayingFragment.updateSong(it) }
         }
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.fragmentContainer, nowPlayingFragment, NowPlayingFragment.TAG)
-            .addToBackStack(NowPlayingFragment.TAG)
-            .commit()
-    }
+
+
 
     override fun onSongClicked(song: Song) {
-        songDisplay.text = ("${song.title} - ${song.artist}")
+        display.text = ("${song.title} - ${song.artist}")
         nowPlaying = song
     }
 

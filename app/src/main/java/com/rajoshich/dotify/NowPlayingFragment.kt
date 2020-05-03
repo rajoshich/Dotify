@@ -17,34 +17,37 @@ import kotlin.random.Random
 class NowPlayingFragment : Fragment() {
 
     private var song: Song? = null
+    private var randomNumber = Random.nextInt(200, 100000)
+
 
     companion object {
         val TAG: String = NowPlayingFragment::class.java.simpleName
         const val ARG_SONG = "arg_song"
+        const val ARG_NUM = "ARG_NUM"
 
-        fun getInstance(song: Song) = NowPlayingFragment().apply {
-            arguments = Bundle().apply {
-                putParcelable(ARG_SONG, song)
-            }
-        }
+//        fun getInstance(song: Song) = NowPlayingFragment().apply {
+//            arguments = Bundle().apply {
+//                putParcelable(ARG_SONG, song)
+//            }
+//        }
     }
-   // private var randomNumber = Random.nextInt(200, 100000)
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-//
-//        with(arguments!!) {
-//            val song = getParcelable<Song>(ARG_SONG)
-//        }
-
-      //  playnumber.text = ("$randomNumber plays")
-
-        arguments?.let { args ->
-            val song = args.getParcelable<Song>(ARG_SONG)
-            if (song != null) {
-                this.song = song
+   if (savedInstanceState != null) {
+            with(savedInstanceState) {
+                randomNumber = getInt(ARG_NUM)
+                song = getParcelable(ARG_SONG)
             }
+        } else {
+            arguments?.let { args ->
+                 song = args.getParcelable(ARG_SONG)
+                if (song != null) {
+                    this.song = song
+                }
+            }
+       randomNumber = Random.nextInt(200, 100000)
         }
     }
 
@@ -70,12 +73,19 @@ class NowPlayingFragment : Fragment() {
 //        song?.let {
 //            val nonNullEmail = it
 //        }
-
+        if (song!= null) {
+            song?.let {
+                cover.setImageResource(it.largeImageID)
+                songName.text = it.title
+                artists.text = it.artist
+            }
+        } else {
+            Toast.makeText(context, "No song selected", Toast.LENGTH_LONG).show()
+        }
         updateSongView()
     }
 
     private fun updateSongView() {
-
         song?.let {
             cover.setImageResource(it.largeImageID)
             songName.text = it.title
@@ -83,19 +93,18 @@ class NowPlayingFragment : Fragment() {
         }
 
         play.setOnClickListener {
-       //     randomNumber++
-        //    playnumber.text = ("$randomNumber plays")
+            randomNumber++
+           playnumber.text = ("$randomNumber plays")
         }
     }
 
+    override fun onSaveInstanceState(outState: Bundle) {
+            outState.putInt(ARG_NUM, randomNumber)
+            outState.putParcelable(ARG_SONG, song)
+        super.onSaveInstanceState(outState)
+
+    }
+
 }
-//if (song!= null) {
-//    song?.let {
-//        cover.setImageResource(it.largeImageID)
-//        songName.text = it.title
-//        artists.text = it.artist
-//    }
-//} else {
-//    Toast.makeText(context, "No song selected", Toast.LENGTH_LONG).show()
-//}
+
 //

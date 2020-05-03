@@ -109,7 +109,7 @@ class SongListFragment : Fragment() {
         outState.putParcelableArrayList(ARG_SONG_LIST, ArrayList(listOfSongs))
     }
 
-    fun shuffle() {
+    fun shuffled() {
         val newList = listOfSongs.shuffled()
         songListAdapter.change(newList)
         listOfSongs = newList
