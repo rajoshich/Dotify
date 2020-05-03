@@ -89,6 +89,7 @@ class NowPlayingFragment : Fragment() {
                 cover.setImageResource(song!!.largeImageID)
                songName.text = song!!.title
                 artists.text = song!!.artist
+            playnumber.text = ("$randomNumber plays")
             }
 
 
