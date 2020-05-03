@@ -97,6 +97,7 @@ class MainSongActivity : AppCompatActivity(), OnSongClickListener {
                 supportFragmentManager.findFragmentByTag(SongListFragment.TAG) as? SongListFragment
             listFragment?.shuffled()
         }
+
         supportFragmentManager.addOnBackStackChangedListener {
             val hasBackStack = supportFragmentManager.backStackEntryCount > 0
             if (hasBackStack) {

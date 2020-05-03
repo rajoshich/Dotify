@@ -93,12 +93,6 @@ class SongListFragment : Fragment() {
         val newList = listOfSongs.shuffled()
         songListAdapter.change(newList)
         listOfSongs = newList
-//
-//        val callback = SongDiffCallback(listOfSongs, newList)
-//        val res = DiffUtil.calculateDiff(callback)
-//        listOfSongs = newList
-//    }
-
 
     }
 }
